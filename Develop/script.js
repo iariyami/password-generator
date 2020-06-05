@@ -1,3 +1,5 @@
+// Assignment Code
+
 // Input Variables
 
 var enter;
@@ -5,8 +7,11 @@ var numberEl;
 var specialEL;
 var uppercaseEL;
 var lowercaseEL;
+var choices;
 
 // Password Variables
+
+// Special Characters
 special = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@", "[", "\\", "]", " ^ ", "_", "`", "{", "|", "}", "~"];
 
 // Numeric characters
@@ -18,16 +23,15 @@ alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n"
 // Space is for the Uppercase conversion
 space = [];
 
-var choices;
-// converts letters to uppercase 
+// Function to convert letters to uppercase 
 var toUpper = function (x) {
     return x.toUpperCase();
 };
-// creates a variable for uppercase conversion
+// Variable for uppercase conversion
 alphaUp = alphabet.map(toUpper);
 
 
-// Assignment Code
+// Generate button starts process for prompt
 var generateBtn = document.querySelector("#generate");
 
 generateBtn.addEventListener("click", function () {
@@ -37,33 +41,33 @@ generateBtn.addEventListener("click", function () {
 
 // Write password to the #password input
 function writePassword() {
-  enter = parseInt(prompt("How long would you like your password to be? Choose between 8 ans 128 characters"));
+  enter = parseInt(prompt("How long would you like your password to be? Choose between 8 and 128 characters"));
   if (!enter) {
     alert("This needs a value");
   } else if (enter < 8 || enter > 128) {
-    enter = parseInt(prompt("You must choose between 8 and 128 characters"));
+    enter = parseInt(prompt("Password must be between 8 and 128 characters"));
 
 
   } else {
-    // Continues once user input is validated
-    numberEl = confirm("Will this contain numbers?");
-    specialEL = confirm("Will this contain special characters?");
-    uppercaseEL = confirm("Will this contain Uppercase letters?");
-    lowercaseEL = confirm("Will this contain Lowercase letters?");
+    // Propmts after input is confirmed
+    numberEl = confirm("Will this password contain numbers?");
+    specialEL = confirm("Will this password contain special characters?");
+    uppercaseEL = confirm("Will this password contain uppercase letters?");
+    lowercaseEL = confirm("Will this password contain lowercase letters?");
 };
 
-// Else if for 4 negative options
+// In case of four negative options
 if (!specialEL && !numberEl && !uppercaseEL && !lowercaseEL) {
     choices = alert("You must choose a criteria!");
 
 }
-// First if statement that uses user input prompts to determine choices
-// Else if for 4 positive options
+
+// Else if for four positive options
 else if (specialEL && numberEl && uppercaseEL && lowercaseEL) {
 
     choices = special.concat(number, alphabet, alphaUp);
 }
-// Else if for 3 positive options
+// Else if for two postive options
 else if (specialEL && numberEl && uppercaseEL) {
     choices = special.concat(number, alphaUp);
 }
@@ -76,7 +80,7 @@ else if (specialEL && lowercaseEL && uppercaseEL) {
 else if (numberEl && lowercaseEL && uppercaseEL) {
     choices = special.concat(alphabet, alphaUp);
 }
-// Else if for 2 positive options 
+// Else if for two positive options 
 else if (specialEL && numberEl) {
     choices = special.concat(number);
 
@@ -95,7 +99,7 @@ else if (lowercaseEL && numberEl) {
 } else if (numberEl && uppercaseEL) {
     choices = number.concat(alphaUp);
 }
-// Else if for 1 positive option
+// Else if for one positive option
 else if (specialEL) {
     choices = special;
 }
@@ -116,14 +120,13 @@ for (var i = 0; i < enter; i++) {
   var pickChoices = choices[Math.floor(Math.random() * choices.length)];
   password.push(pickChoices);
 }
-// This joins the password array and converts it to a string
-// Worked with a tutor to incorporate this option
+
+// Combines password array and converts it to a string using the join method.
 var pass = password.join("");
 UserInput(pass);
 return pass;
 }
-// This puts the password value into the textbox
-// Changed function input to use textcontent
+// Puts the password value into the textbox
 function UserInput(pass) {
   document.getElementById("password").textContent = pass;
 }
