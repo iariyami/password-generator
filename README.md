@@ -30,4 +30,6 @@ What was done:
 -The string made from the new variable for the password is put into the textbox so that the user can see the result of the generator.
 
 Links to webpage and source code are provided below:
+https://iariyami.github.io/password-generator/
 
+https://github.com/iariyami/password-generator
